@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/ui/Header";
 import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothScroll from "@/components/ui/SmoothScroll";
+import Footer from "@/components/ui/Footer";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <CustomCursor />
           <Header />
           {children}
+          <Footer />
         </SmoothScroll>
       </body>
     </html>

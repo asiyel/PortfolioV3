@@ -2,9 +2,42 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { socmed } from "@/data/ContactsData";
 
+function SocialIcon({ name, icon }: { name: string; icon: string }) {
+  return (
+    <Image
+      src={icon}
+      alt={name}
+      width={20}
+      height={20}
+      className="h-5 w-5 object-contain"
+    />
+  );
+}
+
 export default function Contacts() {
+  const [copiedName, setCopiedName] = useState<string | null>(null);
+  const copiedTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copiedTimeout.current) clearTimeout(copiedTimeout.current);
+    };
+  }, []);
+
+  async function handleCopy(name: string, value: string) {
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      return;
+    }
+    setCopiedName(name);
+    if (copiedTimeout.current) clearTimeout(copiedTimeout.current);
+    copiedTimeout.current = setTimeout(() => setCopiedName(null), 1600);
+  }
+
   return (
     <section id="CONTACTS" className="w-full h-full py-10">
       <div className="w-full lg:max-w-[1280px] 3xl:max-w-[1350px] mx-auto flex flex-col lg:flex-row justify-between gap-10">
@@ -23,6 +56,34 @@ export default function Contacts() {
           <div className="flex gap-3">
             {socmed.map((item) => {
               const isResume = item.name === "Resume";
+              const isGmail = item.name === "Gmail";
+
+              if (isGmail) {
+                return (
+                  <div key={item.name} className="relative">
+                    <span
+                      role="status"
+                      aria-live="polite"
+                      className={`pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-foreground px-3 py-1 font-sans text-xs text-background shadow-sm transition-all duration-200 ${
+                        copiedName === item.name
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-1 opacity-0"
+                      }`}
+                    >
+                      Copied!
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleCopy(item.name, item.value)}
+                      aria-label={`Copy ${item.name} address`}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 transition-colors hover:bg-foreground/5"
+                    >
+                      <SocialIcon name={item.name} icon={item.icon} />
+                    </button>
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={item.name}
@@ -33,13 +94,7 @@ export default function Contacts() {
                     : { target: "_blank", rel: "noopener noreferrer" })}
                   className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 transition-colors hover:bg-foreground/5"
                 >
-                  <Image
-                    src={item.icon}
-                    alt={item.name}
-                    width={20}
-                    height={20}
-                    className="h-5 w-5 object-contain"
-                  />
+                  <SocialIcon name={item.name} icon={item.icon} />
                 </Link>
               );
             })}

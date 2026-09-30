@@ -1,8 +1,13 @@
 export const socmed = [
   {
+    name: "Gmail",
+    icon: "/icons/gmail.png",
+    value: "rabano.azielrandel@gmail.com",
+  },
+  {
     name: "Github",
     icon: "/icons/github.png",
-    value: "https://github.com/rabano-azielrandel",
+    value: "https://github.com/asiyel",
   },
   {
     name: "Linkedin",
