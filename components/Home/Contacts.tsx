@@ -20,10 +20,15 @@ function SocialIcon({ name, icon }: { name: string; icon: string }) {
 export default function Contacts() {
   const [copiedName, setCopiedName] = useState<string | null>(null);
   const copiedTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+  const statusTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     return () => {
       if (copiedTimeout.current) clearTimeout(copiedTimeout.current);
+      if (statusTimeout.current) clearTimeout(statusTimeout.current);
     };
   }, []);
 
@@ -36,6 +41,33 @@ export default function Contacts() {
     setCopiedName(name);
     if (copiedTimeout.current) clearTimeout(copiedTimeout.current);
     copiedTimeout.current = setTimeout(() => setCopiedName(null), 1600);
+  }
+
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          project: formData.get("project"),
+        }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+
+    if (statusTimeout.current) clearTimeout(statusTimeout.current);
+    statusTimeout.current = setTimeout(() => setStatus("idle"), 4000);
   }
 
   return (
@@ -102,7 +134,8 @@ export default function Contacts() {
         </div>
         {/* right content */}
         <form
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
+          autoComplete="off"
           className="w-full lg:w-[440px] shrink-0 flex flex-col gap-5 rounded-3xl bg-foreground p-8"
         >
           <div className="flex flex-col gap-2">
@@ -152,10 +185,23 @@ export default function Contacts() {
           </div>
           <button
             type="submit"
-            className="w-full rounded-full bg-background py-3 font-sans text-sm font-medium text-foreground transition-opacity hover:opacity-90"
+            disabled={status === "sending"}
+            className="w-full rounded-full bg-background py-3 font-sans text-sm font-medium text-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
           >
-            Submit
+            {status === "sending" ? "Sending..." : "Submit"}
           </button>
+          <p
+            role="status"
+            aria-live="polite"
+            className={`min-h-5 text-center font-sans text-sm text-background transition-opacity duration-200 ${
+              status === "success" || status === "error"
+                ? "opacity-100"
+                : "opacity-0"
+            }`}
+          >
+            {status === "success" && "Thanks! Your message has been sent."}
+            {status === "error" && "Something went wrong. Please try again."}
+          </p>
         </form>
       </div>
     </section>
