@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { render } from "@react-email/render";
-import EmailTemplate from "@/components/templates/EmailTemplate";
+import EmailTemplate from "@/components/Templates/EmailTemplate";
 
 export async function GET(request: NextRequest) {
   if (process.env.NODE_ENV === "production") {
