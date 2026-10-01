@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import {
   animate,
   motion,
@@ -308,8 +309,21 @@ export default function Bot({
 
             {/* ---------------- back: identity ---------------- */}
             <div className="absolute inset-0 flex flex-col box-border [backface-visibility:hidden] [transform:rotateY(180deg)]">
-              <div className={`shrink-0 px-4 lg:px-11 pt-[30px] pb-3 ${MONO}`}>
-                {coarse ? "TAP TO RETURN" : "SCROLL UP TO RETURN"}
+              <div className="shrink-0 flex items-center justify-between gap-4 px-4 lg:px-11 pt-[30px] pb-3">
+                <span className={MONO}>
+                  {coarse ? "TAP TO RETURN" : "SCROLL UP TO RETURN"}
+                </span>
+                <Link
+                  href="#"
+                  onClick={(e) => e.stopPropagation()}
+                  tabIndex={flipped ? 0 : -1}
+                  aria-hidden={!flipped}
+                  className={`rounded-[6px] border border-[#b8862b] px-4 py-2.5 font-mono text-[10px] tracking-[0.22em] text-[#b8862b] transition-colors hover:bg-[#b8862b] hover:text-[#f2efec] ${
+                    flipped ? "" : "pointer-events-none"
+                  }`}
+                >
+                  TECH STACK ↗
+                </Link>
               </div>
 
               <div
