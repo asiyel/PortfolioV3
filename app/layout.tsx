@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { Geist_Mono, Archivo, Lora } from "next/font/google";
 import "./globals.css";
 
-import Header from "@/components/ui/Header";
 import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothScroll from "@/components/ui/SmoothScroll";
-import Footer from "@/components/ui/Footer";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -36,9 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <SmoothScroll>
           <CustomCursor />
-          <Header />
           {children}
-          <Footer />
         </SmoothScroll>
       </body>
     </html>

@@ -314,7 +314,7 @@ export default function Bot({
                   {coarse ? "TAP TO RETURN" : "SCROLL UP TO RETURN"}
                 </span>
                 <Link
-                  href="#"
+                  href="/techstacks"
                   onClick={(e) => e.stopPropagation()}
                   tabIndex={flipped ? 0 : -1}
                   aria-hidden={!flipped}

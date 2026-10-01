@@ -11,9 +11,8 @@ export default function Footer() {
           A product of fleeting midnight moments, persistence, and unwavering
           passion.
         </span>
-        <span className="text-[18px] text-center text-[#F3F0EC] font-sans font-light">
-          A product of fleeting midnight moments, persistence, and unwavering
-          passion.
+        <span className="text-[14px] text-center text-[#F3F0EC] font-sans font-light">
+          © Aziel Randel Rabano. All rights reserved.
         </span>
         <p
           className="-mb-[0.2em] mt-20 text-[20vw] text-center text-transparent
