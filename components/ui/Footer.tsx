@@ -1,5 +1,6 @@
 import Image from "next/image";
 import BackToTop from "./BackToTop";
+import FooterNav from "./FooterNav";
 
 export default function Footer() {
   return (
@@ -16,13 +17,17 @@ export default function Footer() {
         <div className="mt-12 flex items-center gap-4 text-[#FACB8D]">
           <span className="h-px w-20 bg-[#F3F0EC]/40" />
           <Image
-            src={"/icons/moon-star.png"}
-            alt="MOONSTAR"
+            src={"/icons/icon.png"}
+            alt="logo"
             width={50}
             height={50}
             className="w-[30px] h-auto object-contain"
           />
           <span className="h-px w-20 bg-[#F3F0EC]/40" />
+        </div>
+
+        <div className="mt-16">
+          <FooterNav />
         </div>
 
         <div

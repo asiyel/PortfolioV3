@@ -123,7 +123,7 @@ export default function Hero() {
 
           <motion.p
             style={{ opacity: headingOpacity }}
-            className="text-[16px] text-gray-600 font-[400px] pt-7"
+            className="text-[16px] text-[#B8862B] font-[400px] pt-7"
           >
             The story is longer than this title suggests.
           </motion.p>
