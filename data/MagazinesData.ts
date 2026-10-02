@@ -10,9 +10,43 @@ export const magazines: Magazine[] = [
     description:
       "A verdict is only as true as the hand that delivers it — precision, discipline, resolve.",
     cover: "/images/magazines/cover/clorinde.png",
+    subject: "/images/magazines/clorinde.png",
     palette: ["#2B3A78", "#8E6BD8", "#14151F"],
     format: "2 : 3 cover",
     year: "2026",
+    article: {
+      headline: "The Blade That Speaks for the Accused",
+      deck: "Inside the quiet discipline of Fontaine's champion duelist — where a single shot can settle what the courtroom cannot.",
+      author: "The Editors",
+      readTime: "8 min. read",
+      filedUnder: "Duelist Series",
+      body: [
+        "In Fontaine, a dispute that the court cannot resolve is not left to fester. It is handed to a duelist — and for as long as anyone in the Opera Epiclese can remember, that duelist has been Clorinde. She does not argue. She does not plead. She arrives, takes her mark, and the matter is closed.",
+        "Those who have watched her fight describe the same thing: an unnerving stillness before the first move. The hat stays level. The gloves stay white. When the pistol finally rises, the outcome already seems to have been decided somewhere far behind her eyes.",
+        "It would be easy to mistake that composure for coldness. Spend time near her, though, and a different picture forms — a woman who treats the role as a trust rather than a title, and who carries every verdict she has ever delivered.",
+        "“The duel is not about winning,” a court attendant once told us. “It is about making certain the right person does.” Clorinde, characteristically, declined to comment.",
+        "What follows is a portrait of the champion in her own register: precise, unhurried, and — when the bell finally sounds — absolutely final.",
+      ],
+      pullQuote: {
+        text: "Hesitation is a verdict of its own. I simply refuse to give it.",
+        attribution: "Clorinde, Champion Duelist",
+      },
+      dossier: {
+        title: "The Champion, on File",
+        rows: [
+          { label: "Title", value: "Champion Duelist" },
+          { label: "Nation", value: "Fontaine" },
+          { label: "Vision", value: "Electro" },
+          { label: "Arms", value: "Sword & pistol" },
+          { label: "Record", value: "Undefeated" },
+        ],
+      },
+      next: {
+        title: "Next in the Duelist Series",
+        text: "Our next issue turns from the arena to the gallery: the people who fill the seats, the ones who place the wagers, and what they hope to see when the champion takes her mark.",
+        numeral: "II",
+      },
+    },
   },
   {
     slug: "frieren",
@@ -23,9 +57,43 @@ export const magazines: Magazine[] = [
     description:
       "Ten years was nothing — until it was everything. Time flows on, but memories remain.",
     cover: "/images/magazines/cover/frieren.png",
+    subject: "/images/magazines/freiren.png",
     palette: ["#E8E4DC", "#C9A15A", "#2A2826"],
     format: "2 : 3 cover",
     year: "2026",
+    article: {
+      headline: "The Mage Who Learned to Count the Years",
+      deck: "A thousand years of magic, and a single decade that changed everything — on the long walk after the hero's party.",
+      author: "The Editors",
+      readTime: "7 min. read",
+      filedUnder: "Special Collection",
+      body: [
+        "When the hero's party returned from defeating the Demon King, the celebrations lasted a week. For Frieren, the elf mage who had travelled with them, the ten-year journey had been little more than a pause — a short chapter in a life measured in centuries.",
+        "It was only later, standing at the funeral of the man who had led them, that she realised how little she had tried to know him. The regret was quiet, but it did not leave. So she set out again, retracing the old roads at her own unhurried pace.",
+        "She collects spells the way others collect keepsakes: a charm for growing flowers, a trick for polishing statues, a spell that does nothing but turn sweets warm. None of them win battles. All of them remind her of someone.",
+        "“She never rushes,” says one of her companions. “But lately, she looks back more often.” Frieren, asked about it, only shrugged and said there was still time.",
+        "This issue follows that second journey — slower, softer, and far more deliberate than the first.",
+      ],
+      pullQuote: {
+        text: "I want to know more about humans. I think it's a little late for that, but I want to try.",
+        attribution: "Frieren, Mage of the Hero's Party",
+      },
+      dossier: {
+        title: "The Mage, on File",
+        rows: [
+          { label: "Title", value: "Mage of the Hero's Party" },
+          { label: "Race", value: "Elf" },
+          { label: "Age", value: "Over a thousand years" },
+          { label: "Arms", value: "Staff & spellbook" },
+          { label: "Known for", value: "Zoltraak" },
+        ],
+      },
+      next: {
+        title: "Next in the Special Collection",
+        text: "Next time we follow the apprentice: Fern, the girl Frieren took in, and what it means to learn magic from someone who has all the time in the world.",
+        numeral: "II",
+      },
+    },
   },
   {
     slug: "eris",
@@ -36,8 +104,42 @@ export const magazines: Magazine[] = [
     description:
       "I don't wait to be protected. I draw first. Three years at the Sword Sanctum — temper, tempered.",
     cover: "/images/magazines/cover/eris.png",
+    subject: "/images/magazines/eris.png",
     palette: ["#B3261E", "#5A3A2A", "#2B2826"],
     format: "2 : 3 cover",
     year: "2027",
+    article: {
+      headline: "The Mad Dog Who Learned to Wait",
+      deck: "From the noble halls of Fittoa to the Sword Sanctum — how the Asura Kingdom's most volatile swordswoman tempered her own fire.",
+      author: "The Editors",
+      readTime: "9 min. read",
+      filedUnder: "The Sword Issue",
+      body: [
+        "In the Boreas household, they called her the Mad Dog of Fittoa, and they did not mean it kindly. Tutors left within days. Servants learned to stay out of reach. Eris Boreas Greyrat answered every frustration the only way she knew: first, and with her fists.",
+        "Then the sky over Fittoa turned white, and the life she knew vanished with it. What remained was a sword, a stubborn heart, and the conviction that she would never again be the one who needed saving.",
+        "She spent three years at the Sword Sanctum, training under the Sword God's school. Those who sparred with her there describe the same thing: she never stopped attacking — but somewhere along the way, she learned to choose when.",
+        "“She is still the fastest blade in the room,” an instructor told us. “The difference is that now, she knows she is.” Eris, asked for her own view, said only that she had somewhere to be.",
+        "This is the story of that temper — not extinguished, but forged into something sharper.",
+      ],
+      pullQuote: {
+        text: "I don't wait to be protected. I draw first.",
+        attribution: "Eris Boreas Greyrat, Sword King",
+      },
+      dossier: {
+        title: "The Swordswoman, on File",
+        rows: [
+          { label: "Title", value: "Sword King" },
+          { label: "Nation", value: "Asura Kingdom" },
+          { label: "School", value: "Sword God Style" },
+          { label: "Arms", value: "Longsword" },
+          { label: "Known as", value: "The Mad Dog of Fittoa" },
+        ],
+      },
+      next: {
+        title: "Next in The Sword Issue",
+        text: "Next issue, we return to the Sword Sanctum itself — the masters who run it, the students who never leave, and the duel that decides who earns a title.",
+        numeral: "II",
+      },
+    },
   },
 ];

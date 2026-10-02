@@ -45,7 +45,8 @@ export default function Footer() {
 
         <div className="w-full py-6 flex items-center justify-between border-t border-[#F3F0EC]/15 font-sans text-[13px] text-[#F3F0EC]/70">
           <span>
-            © {new Date().getFullYear()} John Doe. All rights reserved.
+            © {new Date().getFullYear()} Aziel Randel Rabano. All rights
+            reserved.
           </span>
           <BackToTop />
         </div>

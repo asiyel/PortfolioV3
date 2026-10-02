@@ -26,11 +26,10 @@ function ViewButton({ onClick }: { onClick: () => void }) {
   );
 }
 
-// TODO: point to the issue's dynamic page under /magazines once it exists
-function SiteButton() {
+function SiteButton({ slug }: { slug: string }) {
   return (
     <Link
-      href="#"
+      href={`/magazines/${slug}`}
       className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#B8862B] bg-[#B8862B]
         font-mono text-[12px] text-[#201E1E] transition-colors duration-300
         hover:bg-[#FACB8D] hover:border-[#FACB8D]"
@@ -275,7 +274,7 @@ export default function Gallery() {
                   </div>
                   <div className="flex gap-3">
                     <ViewButton onClick={() => setViewing(true)} />
-                    <SiteButton />
+                    <SiteButton slug={active.slug} />
                   </div>
                 </div>
               </motion.div>
@@ -389,7 +388,7 @@ export default function Gallery() {
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <ViewButton onClick={() => setViewing(true)} />
-                <SiteButton />
+                <SiteButton slug={active.slug} />
               </div>
             </motion.div>
           </AnimatePresence>
