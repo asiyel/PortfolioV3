@@ -80,7 +80,7 @@ export default function Contacts() {
             <h2 className="text-[76px] text-foreground font-sans font-semibold">
               Leave a Note
             </h2>
-            <p className="text-[18px] text-foreground font-sans">
+            <p className="text-[18px] text-[#B8862B] font-sans">
               Got an Idea? Let's Make It Real.
             </p>
           </div>
