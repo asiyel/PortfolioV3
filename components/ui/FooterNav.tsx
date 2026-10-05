@@ -7,8 +7,8 @@ const LINKS = [
   { label: "Home", href: "/" },
   { label: "Tech Stack", href: "/techstacks" },
   { label: "Magazine Gallery", href: "/magazines" },
-  { label: "Automation", href: "/automation" },
-  { label: "DSA Learnings", href: "/dsa-learnings" },
+  { label: "Automation", href: "/automations" },
+  { label: "DSA Learnings", href: "/dsa" },
 ];
 
 export default function FooterNav() {
