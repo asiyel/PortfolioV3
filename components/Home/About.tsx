@@ -9,7 +9,7 @@ export default function About() {
       <Marquee rows={skillRows} className="py-2 bg-background" />
       <div className="w-full max-w-[1280px] 3xl:max-w-[1350px] h-full mx-auto flex flex-col gap-5 mt-10">
         <Bot
-          title="WHO I AM"
+          title="WHO AM I"
           paragraph={identity}
           kicker="CORE · IDENTITY"
           background="#f2efec"

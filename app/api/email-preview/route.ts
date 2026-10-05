@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { render } from "@react-email/render";
+import { render } from "react-email";
 import EmailTemplate from "@/components/Templates/EmailTemplate";
 
 export async function GET(request: NextRequest) {
