@@ -20,7 +20,7 @@ export default function ClorindeCover({
         {/* The only image */}
         <Image
           src={magazine.subject}
-          alt="Clorinde, lying on blue silk, aiming a glowing pistol at the viewer"
+          alt="clorinde"
           fill
           priority
           sizes="(min-width: 760px) 760px, 100vw"

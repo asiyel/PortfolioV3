@@ -18,7 +18,7 @@ function ViewButton({ onClick }: { onClick: () => void }) {
         font-mono text-[12px] text-[#FACB8D] transition-colors duration-300
         hover:bg-[#B8862B]/20 cursor-pointer"
     >
-      view_cover
+      COVER
       <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
         ↗
       </span>
@@ -34,7 +34,7 @@ function SiteButton({ slug }: { slug: string }) {
         font-mono text-[12px] text-[#201E1E] transition-colors duration-300
         hover:bg-[#FACB8D] hover:border-[#FACB8D]"
     >
-      go_to_site
+      PROJECT
       <span className="transition-transform duration-300 group-hover:translate-x-0.5">
         →
       </span>
