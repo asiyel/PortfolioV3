@@ -191,7 +191,7 @@ export default function Hero() {
               text-xl font-light gap-4"
           >
             <p>
-              I'm drawn to the space where design meets logic—building
+              I'm drawn to the space where design meets logic, building
               interfaces that feel intentional and systems that are built to
               solve real problems. From web applications to experimental
               projects, I'm always exploring new technologies and better ways to
