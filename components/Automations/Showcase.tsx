@@ -134,14 +134,14 @@ const icon = (name: string, on: boolean) =>
 const pad = (n: number) => String(n + 1).padStart(2, "0");
 const subColor = (s: string) =>
   s.startsWith("true")
-    ? "text-[#9fbf8f]"
+    ? "text-[#5f7f4f]"
     : s.startsWith("false")
-      ? "text-[#c98b7a]"
-      : "text-[#7d7979]";
+      ? "text-[#a5543f]"
+      : "text-[#8d8579]";
 const mono = "font-mono";
 const lora = "font-serif";
 const dots =
-  "bg-[#1a1919] [background-image:radial-gradient(rgba(243,242,242,.08)_1px,transparent_1px)] [background-size:22px_22px]";
+  "bg-[#ebe7e1] [background-image:radial-gradient(rgba(20,20,20,.12)_1px,transparent_1px)] [background-size:22px_22px]";
 
 function NodeBox({
   node,
@@ -160,7 +160,7 @@ function NodeBox({
       : "rounded-md";
   return (
     <span
-      className={`flex flex-none items-center justify-center border transition-colors duration-300 ${box} ${radius} ${on ? "border-[#b68235] bg-[#b68235]/15" : "border-[#f3f2f2]/20 bg-[#252323]"}`}
+      className={`flex flex-none items-center justify-center border transition-colors duration-300 ${box} ${radius} ${on ? "border-[#b8862b] bg-[#b8862b]/15" : "border-[#d9d3ca] bg-[#f6f4f1]"}`}
     >
       <Image
         src={icon(node.icon, on)}
@@ -168,6 +168,7 @@ function NodeBox({
         aria-hidden
         width={img}
         height={img}
+        className={on ? undefined : "brightness-[0.4]"}
       />
     </span>
   );
@@ -208,23 +209,22 @@ export default function AutomationShowcase({
     return () => window.removeEventListener("keydown", onKey);
   }, [wi]);
 
-  const line = (k: number) => (k < step ? "bg-[#b68235]" : "bg-[#f3f2f2]/20");
-  const reached = (k: number) =>
-    k <= step ? "bg-[#b68235]" : "bg-[#f3f2f2]/20";
-  const label = (on: boolean) => (on ? "text-[#facb8d]" : "text-[#bab6b6]");
+  const line = (k: number) => (k < step ? "bg-[#b8862b]" : "bg-[#d9d3ca]");
+  const reached = (k: number) => (k <= step ? "bg-[#b8862b]" : "bg-[#d9d3ca]");
+  const label = (on: boolean) => (on ? "text-[#a87a2c]" : "text-[#4a453f]");
 
   return (
     <section
-      className={`${lora} flex flex-col gap-6 bg-[#252323] px-6 pb-14 pt-16 text-[#f3f2f2] md:gap-11 md:px-20 md:pb-[88px] md:pt-24`}
+      className={`${lora} flex flex-col gap-6 bg-[#F3F0EC] px-6 pb-14 pt-16 text-[#141414] md:gap-11 md:px-20 md:pb-[88px] md:pt-24`}
     >
       {/* Header */}
-      <header className="grid gap-5 border-b border-[#f3f2f2]/15 pb-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-12 md:pb-7">
+      <header className="grid gap-5 border-b border-[#d9d3ca] pb-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-12 md:pb-7">
         <div className="flex flex-col gap-3 md:gap-3.5">
-          <span className={`${mono} text-xs text-[#bab6b6] md:text-[13px]`}>
+          <span className={`${mono} text-xs text-[#8d8579] md:text-[13px]`}>
             {"// the_workshop"}
           </span>
           <h2 className="m-0 text-[40px] font-normal leading-none tracking-[-0.01em] md:text-[72px]">
-            Workflows &amp; <em className="text-[#facb8d]">Automations</em>
+            Workflows &amp; <em className="text-[#b8862b]">Automations</em>
           </h2>
         </div>
         <div className="grid grid-cols-2 gap-2 md:flex md:gap-2.5">
@@ -235,17 +235,17 @@ export default function AutomationShowcase({
                 key={x.title}
                 onClick={() => pickWorkflow(i)}
                 aria-pressed={on}
-                className={`flex min-h-11 cursor-pointer items-center gap-2 rounded-full border px-3.5 py-2 text-left text-sm leading-tight transition-colors hover:border-[#b68235] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b68235] md:gap-3 md:px-5 md:py-3 md:text-[17px] ${on ? "border-[#b68235] bg-[#b68235]/10 text-[#facb8d]" : "border-[#f3f2f2]/15 text-[#f3f2f2]"}`}
+                className={`flex min-h-11 cursor-pointer items-center gap-2 rounded-full border px-3.5 py-2 text-left text-sm leading-tight transition-colors hover:border-[#b8862b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b8862b] md:gap-3 md:px-5 md:py-3 md:text-[17px] ${on ? "border-[#141414] bg-[#f6f4f1] text-[#141414]" : "border-[#e0dad2] bg-[#ebe7e1] text-[#4a453f] hover:text-[#141414]"}`}
               >
                 <span
-                  className={`${mono} text-[11px] text-[#b68235] md:text-xs`}
+                  className={`${mono} text-[11px] text-[#a87a2c] md:text-xs`}
                 >
                   {pad(i)}
                 </span>
                 <span className="md:hidden">{x.short}</span>
                 <span className="hidden md:inline">{x.title}</span>
                 <span
-                  className={`${mono} hidden text-[11px] text-[#7d7979] md:inline`}
+                  className={`${mono} hidden text-[11px] text-[#8d8579] md:inline`}
                 >
                   {x.count}
                 </span>
@@ -259,20 +259,20 @@ export default function AutomationShowcase({
       <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_360px] md:items-end md:gap-16">
         <div className="flex flex-col gap-3 md:gap-[18px]">
           <div
-            className={`${mono} flex items-center gap-3.5 text-[11px] tracking-[0.06em] text-[#bab6b6] md:text-xs`}
+            className={`${mono} flex items-center gap-3.5 text-[11px] tracking-[0.06em] text-[#8d8579] md:text-xs`}
           >
-            <span className="text-[#facb8d]">No. {pad(wi)}</span>
-            <span className="hidden h-px w-8 bg-[#b68235] md:block" />
+            <span className="text-[#a87a2c]">No. {pad(wi)}</span>
+            <span className="hidden h-px w-8 bg-[#b8862b]/70 md:block" />
             <span>n8n workflow</span>
           </div>
           <h3 className="m-0 text-[32px] font-normal leading-[1.05] md:text-[60px] md:leading-none md:tracking-[-0.015em]">
             {w.title}
           </h3>
-          <p className="m-0 max-w-[60ch] text-base italic leading-relaxed text-[#d7d3d3] [text-wrap:pretty] md:text-[19px]">
+          <p className="m-0 max-w-[60ch] text-base italic leading-relaxed text-[#4a453f] [text-wrap:pretty] md:text-[19px]">
             {w.summary}
           </p>
         </div>
-        <dl className="order-last m-0 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 border-t border-[#f3f2f2]/15 pt-4 text-sm md:order-none md:gap-x-5 md:gap-y-2.5 md:border-l md:border-t-0 md:pl-7 md:pt-0 md:text-base">
+        <dl className="order-last m-0 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 border-t border-[#d9d3ca] pt-4 text-sm md:order-none md:gap-x-5 md:gap-y-2.5 md:border-l md:border-t-0 md:pl-7 md:pt-0 md:text-base">
           {(
             [
               ["trigger", w.trigger],
@@ -281,7 +281,7 @@ export default function AutomationShowcase({
             ] as const
           ).map(([k, v]) => (
             <div key={k} className="contents">
-              <dt className={`${mono} pt-[3px] text-[11px] text-[#7d7979]`}>
+              <dt className={`${mono} pt-[3px] text-[11px] text-[#8d8579]`}>
                 {k}
               </dt>
               <dd className="m-0">{v}</dd>
@@ -291,7 +291,7 @@ export default function AutomationShowcase({
 
         {/* Mobile diagram (stacked) */}
         <div
-          className={`${dots} flex flex-col rounded border border-[#b68235]/55 p-5 [background-size:18px_18px] md:hidden`}
+          className={`${dots} flex flex-col rounded border border-[#b8862b]/55 p-5 [background-size:18px_18px] md:hidden`}
         >
           {w.stages.map((s, k) => {
             const on = k === step;
@@ -302,11 +302,11 @@ export default function AutomationShowcase({
                   onClick={() => setStep(k)}
                   className="flex cursor-pointer flex-col gap-2.5 border-0 bg-transparent p-0 text-left text-inherit"
                 >
-                  <span className={`${mono} text-[10px] text-[#b68235]`}>
+                  <span className={`${mono} text-[10px] text-[#a87a2c]`}>
                     {pad(k)} · {s.title}
                   </span>
                   <span
-                    className={`flex flex-col gap-2 border-l transition-colors ${multi ? `pl-3.5 ${k <= step ? "border-[#b68235]" : "border-[#f3f2f2]/20"}` : "border-transparent"}`}
+                    className={`flex flex-col gap-2 border-l transition-colors ${multi ? `pl-3.5 ${k <= step ? "border-[#b8862b]" : "border-[#d9d3ca]"}` : "border-transparent"}`}
                   >
                     {s.nodes.map((n) => (
                       <span key={n.tool} className="flex items-center gap-3">
@@ -337,7 +337,7 @@ export default function AutomationShowcase({
       </div>
 
       {/* Desktop diagram */}
-      <figure className="m-0 hidden rounded border border-[#b68235]/55 bg-[#1d1c1c] p-3 shadow-[0_30px_60px_-30px_rgba(0,0,0,.7)] md:block">
+      <figure className="m-0 hidden rounded border border-[#b8862b]/55 bg-[#f6f4f1] p-3 shadow-[0_24px_48px_-28px_rgba(20,20,20,.25)] md:block">
         <div className={`${dots} flex flex-col rounded-sm`}>
           <div className="flex h-[420px] items-center justify-center px-8 pb-14 pt-6">
             {w.stages.map((s, k) => {
@@ -361,7 +361,7 @@ export default function AutomationShowcase({
                         <span className={`text-xs leading-tight ${label(on)}`}>
                           {s.nodes[0].tool}
                         </span>
-                        <span className="text-[10px] text-[#7d7979]">
+                        <span className="text-[10px] text-[#8d8579]">
                           {s.nodes[0].sub}
                         </span>
                       </span>
@@ -419,7 +419,7 @@ export default function AutomationShowcase({
                         aria-hidden
                         width={16}
                         height={16}
-                        className="absolute -right-1.5 -top-2 size-4"
+                        className={`absolute -right-1.5 -top-2 size-4 ${k < step ? "" : "brightness-[0.4]"}`}
                       />
                     </span>
                   )}
@@ -427,14 +427,14 @@ export default function AutomationShowcase({
               );
             })}
           </div>
-          <div className="mx-8 flex items-baseline gap-4 border-t border-[#f3f2f2]/10 pb-6 pt-5">
+          <div className="mx-8 flex items-baseline gap-4 border-t border-[#d9d3ca] pb-6 pt-5">
             <span
-              className={`${mono} whitespace-nowrap text-xs text-[#facb8d]`}
+              className={`${mono} whitespace-nowrap text-xs text-[#a87a2c]`}
             >
               stage_{pad(step)}
             </span>
             <span className="text-lg leading-normal">
-              <span className="italic text-[#facb8d]">{act.title}</span> —{" "}
+              <span className="italic text-[#a87a2c]">{act.title}</span> —{" "}
               {act.detail}
             </span>
           </div>
@@ -443,10 +443,10 @@ export default function AutomationShowcase({
 
       {/* Mobile active stage */}
       <p className="m-0 text-[15px] leading-relaxed md:hidden">
-        <span className={`${mono} text-[11px] text-[#facb8d]`}>
+        <span className={`${mono} text-[11px] text-[#a87a2c]`}>
           stage_{pad(step)}
         </span>{" "}
-        <span className="italic text-[#facb8d]">{act.title}</span> —{" "}
+        <span className="italic text-[#a87a2c]">{act.title}</span> —{" "}
         {act.detail}
       </p>
     </section>
