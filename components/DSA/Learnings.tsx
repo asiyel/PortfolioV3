@@ -359,13 +359,13 @@ const TOPICS = buildTopics();
 const mono = "font-mono";
 const lora = "font-serif";
 const dots =
-  "bg-[#1a1919] [background-image:radial-gradient(rgba(243,242,242,.08)_1px,transparent_1px)]";
+  "bg-[#ebe7e1] [background-image:radial-gradient(rgba(20,20,20,.12)_1px,transparent_1px)]";
 const pad = (n: number) => String(n + 1).padStart(2, "0");
 const CELL: Record<CellState, string> = {
-  n: "border-[#f3f2f2]/25 bg-[#252323] text-[#f3f2f2]",
-  a: "border-[#b68235] bg-[#b68235]/15 text-[#facb8d]",
-  d: "border-[#9fbf8f] bg-[#9fbf8f]/15 text-[#cfe3c4]",
-  x: "border-[#f3f2f2]/25 bg-[#252323] text-[#f3f2f2] opacity-30",
+  n: "border-[#d9d3ca] bg-[#f6f4f1] text-[#141414]",
+  a: "border-[#b8862b] bg-[#b8862b]/15 text-[#a87a2c]",
+  d: "border-[#5f7f4f] bg-[#5f7f4f]/15 text-[#3f5a33]",
+  x: "border-[#d9d3ca] bg-[#f6f4f1] text-[#141414] opacity-30",
 };
 const icon = (n: string) => `/images/dsa/${n}.png`;
 
@@ -391,7 +391,7 @@ function Linear({
       className={`flex items-center justify-center ${stack ? "flex-col-reverse" : "flex-row"} ${compact ? "gap-[5px]" : "gap-2.5"}`}
     >
       {cells.length === 0 && (
-        <span className={`${mono} text-xs text-[#7d7979] md:text-[13px]`}>
+        <span className={`${mono} text-xs text-[#8d8579] md:text-[13px]`}>
           [ empty ]
         </span>
       )}
@@ -406,7 +406,7 @@ function Linear({
             {c.v}
           </span>
           <span
-            className={`${mono} text-center text-[#facb8d] ${compact ? "h-3 min-w-6 text-[9px]" : "h-3.5 min-w-11 text-[11px]"}`}
+            className={`${mono} text-center text-[#a87a2c] ${compact ? "h-3 min-w-6 text-[9px]" : "h-3.5 min-w-11 text-[11px]"}`}
           >
             {c.tag}
           </span>
@@ -438,7 +438,7 @@ function Tree({
       : active.includes(v)
         ? CELL.a
         : path.includes(v)
-          ? "border-[#b68235] bg-[#252323] text-[#facb8d]"
+          ? "border-[#b8862b] bg-[#f6f4f1] text-[#a87a2c]"
           : CELL.n;
   const onPath = (v: number) =>
     (path.includes(v) || v === found || active.includes(v)) &&
@@ -453,7 +453,7 @@ function Tree({
           return (
             <span
               key={`e${v}`}
-              className={`absolute h-px origin-left transition-colors duration-300 ${onPath(v) ? "bg-[#b68235]" : "bg-[#f3f2f2]/20"}`}
+              className={`absolute h-px origin-left transition-colors duration-300 ${onPath(v) ? "bg-[#b8862b]" : "bg-[#d9d3ca]"}`}
               style={{
                 left: x1,
                 top: y1,
@@ -500,15 +500,15 @@ function Rows({
         const on = k === last,
           done = label === "sorted";
         const g = done
-          ? "border-[#9fbf8f]"
+          ? "border-[#5f7f4f]"
           : on
-            ? "border-[#b68235]"
-            : "border-[#f3f2f2]/20";
+            ? "border-[#b8862b]"
+            : "border-[#d9d3ca]";
         const c = done
-          ? "bg-[#9fbf8f]/15 text-[#cfe3c4]"
+          ? "bg-[#5f7f4f]/15 text-[#3f5a33]"
           : on
-            ? "bg-[#b68235]/15 text-[#facb8d]"
-            : "bg-[#252323] text-[#bab6b6]";
+            ? "bg-[#b8862b]/15 text-[#a87a2c]"
+            : "bg-[#f6f4f1] text-[#4a453f]";
         return (
           <div
             key={k}
@@ -520,7 +520,7 @@ function Rows({
           >
             {!compact && (
               <span
-                className={`${mono} text-[11px] ${on ? "text-[#facb8d]" : "text-[#7d7979]"}`}
+                className={`${mono} text-[11px] ${on ? "text-[#a87a2c]" : "text-[#8d8579]"}`}
               >
                 {label}
               </span>
@@ -590,20 +590,26 @@ function Controls({
   playing: boolean;
   size: string;
 }) {
-  const base = `flex ${size} cursor-pointer items-center justify-center rounded-full border bg-transparent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b68235]`;
+  const base = `flex ${size} cursor-pointer items-center justify-center rounded-full border bg-transparent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b8862b]`;
   return (
     <div className="flex gap-2">
       <button
         onClick={prev}
         aria-label="Previous step"
-        className={`${base} border-[#f3f2f2]/25 hover:border-[#b68235]`}
+        className={`${base} border-[#d9d3ca] hover:border-[#141414]`}
       >
-        <Image src={icon("chevron-left-light")} alt="" width={16} height={16} />
+        <Image
+          src={icon("chevron-left-light")}
+          alt=""
+          width={16}
+          height={16}
+          className="brightness-[0.4]"
+        />
       </button>
       <button
         onClick={toggle}
         aria-label={playing ? "Pause" : "Play"}
-        className={`${base} border-[#b68235] hover:bg-[#b68235]/15`}
+        className={`${base} border-[#b8862b] hover:bg-[#b8862b]/15`}
       >
         <Image
           src={icon(playing ? "pause-gold" : "play-gold")}
@@ -615,9 +621,15 @@ function Controls({
       <button
         onClick={next}
         aria-label="Next step"
-        className={`${base} border-[#f3f2f2]/25 hover:border-[#b68235]`}
+        className={`${base} border-[#d9d3ca] hover:border-[#141414]`}
       >
-        <Image src={icon("chevron-right-light")} alt="" width={16} height={16} />
+        <Image
+          src={icon("chevron-right-light")}
+          alt=""
+          width={16}
+          height={16}
+          className="brightness-[0.4]"
+        />
       </button>
     </div>
   );
@@ -672,19 +684,19 @@ export default function DSALearnings({
 
   return (
     <section
-      className={`${lora} flex flex-col gap-6 bg-[#252323] pb-14 pt-16 text-[#f3f2f2] md:gap-12 md:px-20 md:pb-[88px] md:pt-24`}
+      className={`${lora} flex flex-col gap-6 bg-[#F3F0EC] pb-14 pt-16 text-[#141414] md:gap-12 md:px-20 md:pb-[88px] md:pt-24`}
     >
       {/* Header */}
-      <header className="mx-6 flex flex-col gap-3 border-b border-[#f3f2f2]/15 pb-5 md:mx-0 md:grid md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-12 md:pb-7">
+      <header className="mx-6 flex flex-col gap-3 border-b border-[#d9d3ca] pb-5 md:mx-0 md:grid md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-12 md:pb-7">
         <div className="flex flex-col gap-3 md:gap-3.5">
-          <span className={`${mono} text-xs text-[#bab6b6] md:text-[13px]`}>
+          <span className={`${mono} text-xs text-[#8d8579] md:text-[13px]`}>
             {"// the_notebook"}
           </span>
           <h2 className="m-0 text-[40px] font-normal leading-none tracking-[-0.01em] md:text-[72px]">
-            Structures &amp; <em className="text-[#facb8d]">Algorithms</em>
+            Structures &amp; <em className="text-[#b8862b]">Algorithms</em>
           </h2>
         </div>
-        <p className="m-0 hidden max-w-[36ch] text-right text-[17px] italic leading-relaxed text-[#d7d3d3] md:block">
+        <p className="m-0 hidden max-w-[36ch] text-right text-[17px] italic leading-relaxed text-[#4a453f] md:block">
           Notes from learning DSA — each one traced step by step.
         </p>
       </header>
@@ -702,10 +714,10 @@ export default function DSALearnings({
                 key={x.title}
                 onClick={() => pick(k)}
                 aria-pressed={on}
-                className={`flex min-h-11 flex-none cursor-pointer items-center gap-2 rounded-full border px-3.5 text-left text-sm transition-colors hover:border-[#b68235] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b68235] md:grid md:grid-cols-[36px_minmax(0,1fr)] md:items-baseline md:gap-x-3 md:gap-y-1 md:rounded md:px-[18px] md:py-4 ${on ? "border-[#b68235] bg-[#b68235]/10 text-[#facb8d]" : "border-[#f3f2f2]/15 text-[#f3f2f2]"}`}
+                className={`flex min-h-11 flex-none cursor-pointer items-center gap-2 rounded-full border px-3.5 text-left text-sm transition-colors hover:border-[#b8862b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b8862b] md:grid md:grid-cols-[36px_minmax(0,1fr)] md:items-baseline md:gap-x-3 md:gap-y-1 md:rounded md:px-[18px] md:py-4 ${on ? "border-[#141414] bg-[#f6f4f1] text-[#141414]" : "border-[#e0dad2] bg-[#ebe7e1] text-[#4a453f] hover:text-[#141414]"}`}
               >
                 <span
-                  className={`${mono} text-[11px] text-[#b68235] md:text-xs`}
+                  className={`${mono} text-[11px] text-[#b8862b] md:text-xs`}
                 >
                   {pad(k)}
                 </span>
@@ -714,7 +726,7 @@ export default function DSALearnings({
                 </span>
                 <span className="hidden md:block" />
                 <span
-                  className={`${mono} hidden text-[11px] text-[#7d7979] md:block`}
+                  className={`${mono} hidden text-[11px] text-[#8d8579] md:block`}
                 >
                   {x.kind}
                 </span>
@@ -727,30 +739,30 @@ export default function DSALearnings({
           {/* Intro */}
           <div className="mx-6 flex flex-col gap-2.5 md:mx-0 md:gap-4">
             <div
-              className={`${mono} flex items-center gap-3.5 text-[11px] tracking-[0.06em] text-[#bab6b6] md:text-xs`}
+              className={`${mono} flex items-center gap-3.5 text-[11px] tracking-[0.06em] text-[#8d8579] md:text-xs`}
             >
-              <span className="text-[#facb8d]">No. {pad(t)}</span>
-              <span className="hidden h-px w-8 bg-[#b68235] md:block" />
+              <span className="text-[#a87a2c]">No. {pad(t)}</span>
+              <span className="hidden h-px w-8 bg-[#b8862b] md:block" />
               <span>{topic.kind}</span>
             </div>
             <h3 className="m-0 text-[32px] font-normal leading-[1.05] md:text-[60px] md:leading-none md:tracking-[-0.015em]">
               {topic.title}
             </h3>
-            <p className="m-0 max-w-[62ch] text-base italic leading-relaxed text-[#d7d3d3] [text-wrap:pretty] md:text-lg">
+            <p className="m-0 max-w-[62ch] text-base italic leading-relaxed text-[#4a453f] [text-wrap:pretty] md:text-lg">
               {topic.summary}
             </p>
           </div>
 
           {/* Mobile visualizer */}
           <div
-            className={`${dots} mx-6 flex flex-col rounded border border-[#b68235]/55 [background-size:18px_18px] md:hidden`}
+            className={`${dots} mx-6 flex flex-col rounded border border-[#b8862b]/55 [background-size:18px_18px] md:hidden`}
           >
             <div className="flex h-[280px] items-center justify-center p-4">
               <Visual topic={topic} fr={fr} compact />
             </div>
-            <div className="mx-4 flex flex-col gap-3 border-t border-[#f3f2f2]/10 pb-4 pt-3.5">
+            <div className="mx-4 flex flex-col gap-3 border-t border-[#d9d3ca] pb-4 pt-3.5">
               <p className="m-0 text-[15px] leading-normal">
-                <span className={`${mono} text-[11px] text-[#facb8d]`}>
+                <span className={`${mono} text-[11px] text-[#a87a2c]`}>
                   step_{stepLabel}
                 </span>{" "}
                 {fr.caption}
@@ -760,17 +772,17 @@ export default function DSALearnings({
           </div>
 
           {/* Desktop visualizer */}
-          <figure className="m-0 hidden rounded border border-[#b68235]/55 bg-[#1d1c1c] p-3 shadow-[0_30px_60px_-30px_rgba(0,0,0,.7)] md:block">
+          <figure className="m-0 hidden rounded border border-[#b8862b]/55 bg-[#f6f4f1] p-3 shadow-[0_24px_48px_-28px_rgba(20,20,20,.25)] md:block">
             <div
               className={`${dots} flex flex-col rounded-sm [background-size:22px_22px]`}
             >
               <div className="flex h-[360px] items-center justify-center p-7">
                 <Visual topic={topic} fr={fr} />
               </div>
-              <div className="mx-7 flex items-center gap-5 border-t border-[#f3f2f2]/10 pb-[22px] pt-[18px]">
+              <div className="mx-7 flex items-center gap-5 border-t border-[#d9d3ca] pb-[22px] pt-[18px]">
                 <Controls {...ctl} size="size-10" />
                 <span
-                  className={`${mono} whitespace-nowrap text-xs text-[#facb8d]`}
+                  className={`${mono} whitespace-nowrap text-xs text-[#a87a2c]`}
                 >
                   step_{stepLabel}
                 </span>
@@ -784,20 +796,20 @@ export default function DSALearnings({
           {/* Code + complexity */}
           <div className="mx-6 flex flex-col gap-6 md:mx-0 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:items-start md:gap-8">
             <div
-              className={`${mono} hidden rounded border border-[#f3f2f2]/10 bg-[#1d1c1c] py-[18px] text-[13px] leading-[1.75] md:block`}
+              className={`${mono} hidden rounded border border-[#e0dad2] bg-[#f6f4f1] py-[18px] text-[13px] leading-[1.75] md:block`}
             >
               {topic.code.map((line, i) => {
                 const on = i === fr.line;
                 return (
                   <div
                     key={i}
-                    className={`grid grid-cols-[44px_minmax(0,1fr)] transition-colors duration-300 ${on ? "bg-[#b68235]/15 shadow-[inset_2px_0_0_#b68235]" : ""}`}
+                    className={`grid grid-cols-[44px_minmax(0,1fr)] transition-colors duration-300 ${on ? "bg-[#b8862b]/15 shadow-[inset_2px_0_0_#b8862b]" : ""}`}
                   >
-                    <span className="pr-4 text-right text-[#5f5c5c]">
+                    <span className="pr-4 text-right text-[#b5ada2]">
                       {i + 1}
                     </span>
                     <span
-                      className={`whitespace-pre ${on ? "text-[#facb8d]" : "text-[#d7d3d3]"}`}
+                      className={`whitespace-pre ${on ? "text-[#a87a2c]" : "text-[#4a453f]"}`}
                     >
                       {line}
                     </span>
@@ -805,14 +817,14 @@ export default function DSALearnings({
                 );
               })}
             </div>
-            <dl className="m-0 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm md:gap-x-5 md:gap-y-3 md:border-l md:border-[#f3f2f2]/15 md:pl-6 md:text-base">
+            <dl className="m-0 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm md:gap-x-5 md:gap-y-3 md:border-l md:border-[#d9d3ca] md:pl-6 md:text-base">
               {meta.map(([k, v, isMono]) => (
                 <div key={k} className="contents">
-                  <dt className={`${mono} pt-[3px] text-[11px] text-[#7d7979]`}>
+                  <dt className={`${mono} pt-[3px] text-[11px] text-[#8d8579]`}>
                     {k}
                   </dt>
                   <dd
-                    className={`m-0 ${isMono ? `${mono} text-[13px] text-[#facb8d] md:text-sm` : "leading-normal"}`}
+                    className={`m-0 ${isMono ? `${mono} text-[13px] text-[#a87a2c] md:text-sm` : "leading-normal"}`}
                   >
                     {v}
                   </dd>
