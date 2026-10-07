@@ -162,6 +162,14 @@ export default function Bot({
     if (paragraphRef.current) paragraphRef.current.scrollTop = 0;
   }, [flipped]);
 
+  // iOS Safari ignores backface-visibility on children promoted to their own
+  // layer (the droid's transforms), so also hide each face once the flip
+  // passes 90° — ~0.38s into the 0.82s eased rotation.
+  const faceVisibility = (shown: boolean): React.CSSProperties => ({
+    visibility: shown ? "visible" : "hidden",
+    transition: "visibility 0s linear 0.38s",
+  });
+
   const eyeStyle = { x: eyeX, y: eyeY };
   const lens = "rounded-full will-change-transform";
 
@@ -180,7 +188,10 @@ export default function Bot({
             transition={{ duration: 0.82, ease: [0.7, 0, 0.2, 1] }}
           >
             {/* ---------------- front: title + rolling droid ---------------- */}
-            <div className="absolute inset-0 [backface-visibility:hidden]">
+            <div
+              style={faceVisibility(!flipped)}
+              className="absolute inset-0 [backface-visibility:hidden]"
+            >
               {kicker ? (
                 <div className={`absolute left-11 top-[30px] ${MONO}`}>
                   {kicker}
@@ -308,7 +319,10 @@ export default function Bot({
             </div>
 
             {/* ---------------- back: identity ---------------- */}
-            <div className="absolute inset-0 flex flex-col box-border [backface-visibility:hidden] [transform:rotateY(180deg)]">
+            <div
+              style={faceVisibility(flipped)}
+              className="absolute inset-0 flex flex-col box-border [backface-visibility:hidden] [transform:rotateY(180deg)]"
+            >
               <div className="shrink-0 flex items-center justify-between gap-4 px-4 lg:px-11 pt-[30px] pb-3">
                 <span className={MONO}>
                   {coarse ? "TAP TO RETURN" : "SCROLL UP TO RETURN"}
