@@ -15,7 +15,7 @@ function ViewButton({ onClick }: { onClick: () => void }) {
       type="button"
       onClick={onClick}
       className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#B8862B]
-        font-mono text-[12px] text-[#FACB8D] transition-colors duration-300
+        font-mono text-[12px] text-[#B8862B] transition-colors duration-300
         hover:bg-[#B8862B]/20 cursor-pointer"
     >
       COVER
@@ -57,7 +57,7 @@ function Controls({
 }) {
   return (
     <div className={`flex items-center gap-6 ${className}`}>
-      <span className="font-mono text-[13px] text-[#F3F0EC]/70">
+      <span className="font-mono text-[13px] text-foreground/70">
         {pad(index + 1)} / {pad(total)}
       </span>
       <div className="flex gap-4">
@@ -66,7 +66,7 @@ function Controls({
           onClick={onPrev}
           aria-label="Previous issue"
           className="w-10 h-10 flex justify-center items-center cursor-pointer
-          rounded-full border border-[#F3F0EC]/30 transition-all duration-300
+          rounded-full border border-foreground/40 transition-all duration-300
           hover:bg-[#B8862B]/20 hover:scale-105"
         >
           <Image
@@ -90,7 +90,7 @@ function Controls({
             alt=""
             width={50}
             height={50}
-            className="w-[16px] h-auto object-contain"
+            className="w-[16px] h-auto object-contain shadow-2xl"
           />
         </button>
       </div>
@@ -166,12 +166,12 @@ export default function Gallery() {
   };
 
   return (
-    <section className="w-full h-full py-10 bg-[#252323]">
+    <section className="w-full h-full py-10 bg-[#F3F0EC]">
       <div className="w-full px-6 xl:px-0 max-w-[1280px] 3xl:max-w-[1350px] h-full mx-auto flex flex-col mt-10">
         {/* Header */}
         <div className="flex pb-6 justify-between items-end border-b border-[#F3F0EC]/15">
           <div>
-            <h2 className="mt-3 text-[44px] md:text-[64px] text-[#F3F0EC] leading-[1.05] font-serif">
+            <h2 className="mt-3 text-[44px] md:text-[64px] text-foreground leading-[1.05] font-serif">
               Covers & <br className="md:hidden" />
               <em className="text-[#B8862B]">Collections</em>
             </h2>
@@ -229,21 +229,21 @@ export default function Gallery() {
                 <div className="flex items-center gap-3 font-mono text-[12px]">
                   <span className="text-[#FACB8D]">No. {active.issue}</span>
                   <span className="h-px w-8 bg-[#B8862B]/70" />
-                  <span className="text-[#F3F0EC]/60">{active.series}</span>
+                  <span className="text-foreground">{active.series}</span>
                 </div>
-                <h3 className="mt-6 text-[64px] xl:text-[76px] leading-[1.05] text-[#F3F0EC] font-serif">
+                <h3 className="mt-6 text-[64px] xl:text-[76px] leading-[1.05] text-foreground font-serif">
                   {active.title}
                 </h3>
                 <p className="mt-5 text-[20px] italic text-[#FACB8D] font-serif">
                   {active.titleJp}
                 </p>
-                <p className="mt-5 max-w-[460px] text-[17px] leading-relaxed italic text-[#F3F0EC]/80 font-serif">
+                <p className="mt-5 max-w-[460px] text-[17px] leading-relaxed italic text-foreground/80 font-serif">
                   {active.description}
                 </p>
 
                 <div className="mt-10 flex gap-12 font-mono">
                   <div>
-                    <span className="block text-[11px] text-[#F3F0EC]/50">
+                    <span className="block text-[11px] text-foreground/50">
                       palette
                     </span>
                     <div className="mt-3 flex gap-1.5">
@@ -257,18 +257,18 @@ export default function Gallery() {
                     </div>
                   </div>
                   <div>
-                    <span className="block text-[11px] text-[#F3F0EC]/50">
+                    <span className="block text-[11px] text-foreground/50">
                       format
                     </span>
-                    <span className="block mt-2 text-[12px] text-[#F3F0EC]">
+                    <span className="block mt-2 text-[12px] text-foreground">
                       {active.format}
                     </span>
                   </div>
                   <div>
-                    <span className="block text-[11px] text-[#F3F0EC]/50">
+                    <span className="block text-[11px] text-foreground/50">
                       year
                     </span>
-                    <span className="block mt-2 text-[12px] text-[#F3F0EC]">
+                    <span className="block mt-2 text-[12px] text-foreground">
                       {active.year}
                     </span>
                   </div>
@@ -282,50 +282,64 @@ export default function Gallery() {
 
             {/* More issues */}
             <div className="mt-auto pt-12">
-              <div className="flex justify-between font-mono text-[11px] text-[#F3F0EC]/50">
-                <span>more_issues</span>
-                <span>← → to browse</span>
+              <div className="flex justify-between font-mono text-[10px] tracking-[0.22em] text-[#8d8579]">
+                <span>MORE ISSUES</span>
+                <span>← → TO BROWSE</span>
               </div>
               <div
                 ref={thumbsRef}
-                className="relative mt-3 flex gap-4 overflow-x-auto pb-2 [scrollbar-width:none]"
+                className="relative mt-4 flex gap-4 overflow-x-auto pt-2 pb-2 [scrollbar-width:none]"
               >
-                {magazines.map((mag, i) => (
-                  <button
-                    key={mag.slug}
-                    type="button"
-                    onClick={() => go(i)}
-                    aria-label={`Show ${mag.title}`}
-                    aria-current={i === index}
-                    className="group w-[150px] shrink-0 text-left cursor-pointer"
-                  >
-                    <div
-                      className={`relative aspect-[3/4] p-1.5 rounded-sm border transition-colors duration-300 ${
-                        i === index
-                          ? "border-[#B8862B]"
-                          : "border-[#F3F0EC]/15 group-hover:border-[#B8862B]/50"
-                      }`}
+                {magazines.map((mag, i) => {
+                  const current = i === index;
+                  return (
+                    <button
+                      key={mag.slug}
+                      type="button"
+                      onClick={() => go(i)}
+                      aria-label={`Show ${mag.title}`}
+                      aria-current={current}
+                      className="group w-[150px] shrink-0 text-left cursor-pointer"
                     >
-                      <div className="relative w-full h-full overflow-hidden rounded-sm">
-                        <Image
-                          src={mag.cover}
-                          alt=""
-                          fill
-                          sizes="150px"
-                          className={`object-cover object-top transition-opacity duration-300 ${
-                            i === index
-                              ? "opacity-100"
-                              : "opacity-60 group-hover:opacity-90"
-                          }`}
-                        />
+                      <div
+                        className={`relative aspect-[3/4] p-1.5 rounded-[6px] border transition-colors duration-300 ${
+                          current
+                            ? "border-[#141414] bg-[#f6f4f1]"
+                            : "border-[#e0dad2] bg-[#ebe7e1] group-hover:border-[#b8862b]"
+                        }`}
+                      >
+                        {current && (
+                          <span className="absolute -top-2 left-1/2 h-2 w-px bg-[#141414]" />
+                        )}
+                        <div className="relative w-full h-full overflow-hidden rounded-sm">
+                          <Image
+                            src={mag.cover}
+                            alt=""
+                            fill
+                            sizes="150px"
+                            className={`object-cover object-top transition-[filter] duration-300 ${
+                              current
+                                ? "grayscale-0"
+                                : "grayscale-[70%] group-hover:grayscale-0"
+                            }`}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="mt-2 flex justify-between font-mono text-[11px]">
-                      <span className="text-[#F3F0EC]/70">{mag.slug}</span>
-                      <span className="text-[#FACB8D]">{mag.issue}</span>
-                    </div>
-                  </button>
-                ))}
+                      <div className="mt-2.5 flex justify-between font-mono text-[11px]">
+                        <span
+                          className={`transition-colors ${
+                            current
+                              ? "text-[#141414]"
+                              : "text-[#6f685f] group-hover:text-[#141414]"
+                          }`}
+                        >
+                          {mag.slug}
+                        </span>
+                        <span className="text-[#a87a2c]">No. {mag.issue}</span>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -347,7 +361,9 @@ export default function Gallery() {
               >
                 <div
                   className={`relative aspect-[2/3] p-2 rounded-sm border transition-colors duration-300 ${
-                    i === index ? "border-[#B8862B]" : "border-[#F3F0EC]/15"
+                    i === index
+                      ? "border-[#141414] bg-[#f6f4f1]"
+                      : "border-[#e0dad2] bg-[#ebe7e1]"
                   }`}
                 >
                   <div className="relative w-full h-full overflow-hidden rounded-sm">
@@ -361,10 +377,10 @@ export default function Gallery() {
                   </div>
                 </div>
                 <div className="mt-4 flex justify-between font-mono text-[12px]">
-                  <span className="text-[#FACB8D]">No. {mag.issue}</span>
-                  <span className="text-[#F3F0EC]/60">{mag.year}</span>
+                  <span className="text-[#a87a2c]">No. {mag.issue}</span>
+                  <span className="text-[#8d8579]">{mag.year}</span>
                 </div>
-                <h3 className="mt-2 text-[24px] leading-tight text-[#F3F0EC] font-sans">
+                <h3 className="mt-2 text-[24px] leading-tight text-[#141414] font-serif">
                   {mag.title}
                 </h3>
               </button>
